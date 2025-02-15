@@ -5,10 +5,13 @@ import { UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from '../../models/user';
 import { UserFormDialogComponent } from '../user-form-dialog/user-form-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-list',
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, MatIconModule, MatCardModule, MatButtonModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

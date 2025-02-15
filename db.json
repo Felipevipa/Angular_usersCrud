@@ -1,6 +1,24 @@
 {
-    "users": [
-      { "id": 1, "name": "John Doe", "email": "john@example.com" },
-      { "id": 2, "name": "Jane Doe", "email": "jane@example.com" }
-    ]
-  }
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com"
+    },
+    {
+      "id": "2",
+      "name": "Jane Doe",
+      "email": "jane@correo.com"
+    },
+    {
+      "id": "e9a3",
+      "name": "Andres",
+      "email": "andres@correo.com"
+    },
+    {
+      "id": "7246",
+      "name": "felipe",
+      "email": "felipe@correo.co"
+    }
+  ]
+}

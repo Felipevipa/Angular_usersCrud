@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { UserService } from '../../services/user.service';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from '../../models/user';
+import { UserFormDialogComponent } from '../user-form-dialog/user-form-dialog.component';
 
 @Component({
   selector: 'app-user-list',
@@ -11,9 +13,10 @@ import { User } from '../../models/user';
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent implements OnInit {
-  users: User[] = []
+  users: User[] = [];
+  displayedColumns: string[] = ['id', 'name', 'email', 'actions'];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loadUsers();
@@ -25,5 +28,22 @@ export class UserListComponent implements OnInit {
 
   deleteUser(id: number): void {
     this.userService.deleteUser(id).subscribe(() => this.loadUsers());
+  }
+
+  openUserForm(user?: User): void {
+    const dialogRef = this.dialog.open(UserFormDialogComponent, {
+      width: '400px',
+      data: user ? {...user} : {}
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if(user) {
+          this.userService.updateUser(result).subscribe(() => this.loadUsers());
+        } else {
+          this.userService.addUser(result).subscribe(() => this.loadUsers());
+        }
+      }
+    });
   }
 }
